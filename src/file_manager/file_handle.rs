@@ -31,12 +31,12 @@ impl FileHandle {
             if counters.len() != 4 {
                 (0, 0, 0, 0)
             } else {
-                // Safe because length is guaranteed to be 4
+                // SAFETY: Size is guaranteed to be four.
                 (
-                    *counters.get(0).unwrap(),
-                    *counters.get(1).unwrap(),
-                    *counters.get(2).unwrap(),
-                    *counters.get(3).unwrap(),
+                    unsafe { *counters.get_unchecked(0) },
+                    unsafe { *counters.get_unchecked(1) },
+                    unsafe { *counters.get_unchecked(2) },
+                    unsafe { *counters.get_unchecked(3) },
                 )
             }
         } else {
